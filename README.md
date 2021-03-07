@@ -3,6 +3,11 @@ A .NET SDK for the Rebrandly API.
 
 RebrandlyNET is a minimal dependency, straightforward SDK of the Rebrandly REST API that's easy to use.
 
+To get started, just install the package through nuget!
+```
+PM> Install-Package RebrandlyNet
+```
+
 # Usage
 
 Starting the client is super-easy, just provide your API key that you got from Rebrandly.
