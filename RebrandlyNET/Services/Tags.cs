@@ -24,9 +24,9 @@ namespace Rebrandly
         /// <param name="limit">How many tags to load (max: 25)</param>
         /// <param name="last">The id of the last tag you fetched, see Infinite Scrolling section</param>
         /// <returns></returns>
-        public async Task<Models.Tag[]> List(OrderDir? orderDir, uint limit = 25, string last = null)
+        public async Task<Models.Tag[]> List(OrderDir? orderDir = null, uint limit = 25, string last = null)
         {
-            string segment = "/tags";
+            string segment = "tags";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -48,7 +48,7 @@ namespace Rebrandly
         /// </summary>
         /// <param name="orderDir">Sorting direction to apply to your tags collection</param>
         /// <returns></returns>
-        public async Task<Models.Tag[]> ListAll(OrderDir? orderDir)
+        public async Task<Models.Tag[]> ListAll(OrderDir? orderDir = null)
         {
             Func<string, Task<Models.Tag[]>> getTask = ((string last) =>
             {
@@ -65,7 +65,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Tag> Get(string id)
         {
-            string segment = "/tags/" + id;
+            string segment = "tags/" + id;
             var response = await client.GetAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -81,7 +81,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Tag> Create(string _name, string _color = "ddeeff")
         {
-            string segment = "/tags";
+            string segment = "tags";
             string json = JsonConvert.SerializeObject(new
             {
                 name = _name,
@@ -104,7 +104,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Tag> Update(string id, string _name, string _color)
         {
-            string segment = "/tags/" + id;
+            string segment = "tags/" + id;
             string json = JsonConvert.SerializeObject(new
             {
                 name = _name,
@@ -133,7 +133,7 @@ namespace Rebrandly
         /// </summary>
         public async Task<long> Count()
         {
-            string segment = "/tags/count";
+            string segment = "tags/count";
             var response = await client.GetAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -148,7 +148,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Tag> Delete(string id)
         {
-            string segment = "/tags/" + id;
+            string segment = "tags/" + id;
             var response = await client.DeleteAsync(segment);
             response.EnsureSuccessStatusCode();
 

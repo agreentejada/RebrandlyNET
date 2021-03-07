@@ -23,9 +23,9 @@ namespace Rebrandly
         /// <param name="orderDir">Sorting direction to apply to your scripts collection</param>
         /// <param name="limit">How many scripts to load (max: 25)</param>
         /// <param name="last">The id of the last script you fetched</param>
-        public async Task<Models.Script[]> List(OrderDir? orderDir, uint limit = 25, string last = null)
+        public async Task<Models.Script[]> List(OrderDir? orderDir = null, uint limit = 25, string last = null)
         {
-            string segment = "/scripts";
+            string segment = "scripts";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -47,7 +47,7 @@ namespace Rebrandly
         /// </summary>
         /// <param name="orderDir">Sorting direction to apply to your scripts collection</param>
         /// <returns></returns>
-        public async Task<Models.Script[]> ListAll(OrderDir? orderDir)
+        public async Task<Models.Script[]> ListAll(OrderDir? orderDir = null)
         {
             Func<string, Task<Models.Script[]>> getTask = ((string last) =>
             {
@@ -64,7 +64,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Script> Get(string id)
         {
-            string segment = "/scripts/" + id;
+            string segment = "scripts/" + id;
             var response = await client.GetAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -81,7 +81,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Script> Update(string id, string _name, string _value)
         {
-            string segment = "/scripts/" + id;
+            string segment = "scripts/" + id;
             string json = JsonConvert.SerializeObject(new
             {
                 name = _name,
@@ -114,7 +114,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Script> Create(string _name, string _value = null)
         {
-            string segment = "/scripts";
+            string segment = "scripts";
             string json = JsonConvert.SerializeObject(new
             {
                 name = _name,
@@ -135,7 +135,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<long> Count()
         {
-            string segment = "/scripts/count";
+            string segment = "scripts/count";
             var response = await client.GetAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -150,7 +150,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Script> Delete(string id)
         {
-            string segment = "/scripts/" + id;
+            string segment = "scripts/" + id;
             var response = await client.DeleteAsync(segment);
             response.EnsureSuccessStatusCode();
 

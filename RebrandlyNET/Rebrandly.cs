@@ -11,8 +11,8 @@ namespace Rebrandly
     public class RebrandlyClient
     {
         HttpClient client;
-        const string baseAddress = "https://api.rebrandly.com/v1";
-        const string oauthAddress = "https://oauth.rebrandly.com/connect/authorize";
+        const string baseAddress = "https://api.rebrandly.com/v1/";
+        const string oauthAddress = "https://oauth.rebrandly.com/connect/authorize/";
 
         //If apiKey, save key.
         public string APIKey { get; private set; }
@@ -63,16 +63,35 @@ namespace Rebrandly
         //TODO: Add OAuth method.
         public RebrandlyClient(string apiKey) : this()
         {
-            client.DefaultRequestHeaders.Add("apikey", apiKey);
+            client.DefaultRequestHeaders.Add("apiKey", apiKey);
             APIKey = apiKey;
         }
 
         #region Services.
 
+        /// <summary>
+        /// Gets account and workspace details.
+        /// </summary>
         public Account Account { get; private set; }
+
+        /// <summary>
+        /// Gets domain details.
+        /// </summary>
         public Domains Domains { get; private set; }
+
+        /// <summary>
+        /// Manages all functionality related to links.
+        /// </summary>
         public Links Links { get; private set; }
+
+        /// <summary>
+        /// Manages creating, attaching, updating, getting, and deleting scripts.
+        /// </summary>
         public Scripts Scripts { get; private set;}
+
+        /// <summary>
+        /// Manages creating, attaching, updating, getting, and deleting tags.
+        /// </summary>
         public Tags Tags { get; private set;  }
 
         #endregion

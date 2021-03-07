@@ -22,7 +22,7 @@ namespace Rebrandly
         /// <returns>A <see cref="Models.Account"/> description of the current account.</returns>
         public async Task<Models.Account> Get()
         {
-            string segment = "/account";
+            string segment = "account";
             var response = await client.GetAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -38,9 +38,9 @@ namespace Rebrandly
         /// <param name="limit">How many workspaces to load (max: 25)</param>
         /// <param name="last">The id of the last workspace you fetched.</param>
         /// <returns></returns>
-        public async Task<Models.Workspace[]> GetWorkspaces(OrderByWorkspace? orderBy, OrderDir? orderDir, uint limit = 25, string last = null)
+        public async Task<Models.Workspace[]> GetWorkspaces(OrderByWorkspace? orderBy = null, OrderDir? orderDir = null, uint limit = 25, string last = null)
         {
-            string segment = "/account/workspace";
+            string segment = "account/workspaces";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -63,7 +63,7 @@ namespace Rebrandly
         /// <param name="orderBy">Sorting criteria to apply to your workspaces collection among "name", "createdAt" and "updatedAt."</param>
         /// <param name="orderDir">Sorting direction to apply to your workspaces collection. Either "asc" or "desc"</param>
         /// <returns>An array of all <see cref="Models.Workspace"/>.</returns>
-        public async Task<Models.Workspace[]> GetAllWorkspaces(OrderByWorkspace? orderBy, OrderDir? orderDir)
+        public async Task<Models.Workspace[]> GetAllWorkspaces(OrderByWorkspace? orderBy = null, OrderDir? orderDir = null)
         {
             Func<string, Task<Models.Workspace[]>> getTask = ((string last) =>
             {

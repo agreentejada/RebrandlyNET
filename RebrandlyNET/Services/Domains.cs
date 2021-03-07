@@ -27,7 +27,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Domain[]> List(bool? active = null, OrderByDomain? orderBy = null, OrderDir? orderDir = null, uint limit = 25, string last = null)
         {
-            string segment = "/domains";
+            string segment = "domains";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -68,7 +68,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Domain> Get(string id)
         {
-            string segment = "/domains/" + id;
+            string segment = "domains/" + id;
             var response = await client.GetAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -84,7 +84,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<long> Count(bool? active = null, DomainType? type = null)
         {
-            string segment = "/domains/count";
+            string segment = "domains/count";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {

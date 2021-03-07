@@ -34,7 +34,7 @@ namespace Rebrandly
         public async Task<Models.Link[]> List(string domainid = null, string domainfullname = null, string slashtag = null, 
             string creatorid = null, OrderByLinks? orderBy = null, OrderDir? orderDir = null, uint limit = 25, string last = null)
         {
-            string segment = "/links";
+            string segment = "links";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -84,7 +84,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Link> Get(string id)
         {
-            string segment = "/links/" + id;
+            string segment = "links/" + id;
             var response = await client.GetAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -100,7 +100,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<long> Count(bool? favourite = null, string domainid = null)
         {
-            string segment = "/links/count";
+            string segment = "links/count";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -128,7 +128,7 @@ namespace Rebrandly
         public async Task<Models.Link> CreateGET(string destination, string slashtag = null, string title = null, 
             string domainid = null, string domainfullName = "rebrandly.ly")
         {
-            string segment = "/links/new";
+            string segment = "links/new";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -162,7 +162,7 @@ namespace Rebrandly
         public async Task<Models.Link> Create(string _destination, string _slashtag = null, string _domainname = "rebrandly.ly", 
             string _domainid = null, string _title = null, string _description = null)
         {
-            string segment = "/links";
+            string segment = "links";
             string json = JsonConvert.SerializeObject(new
             {
                 destination = _destination,
@@ -190,7 +190,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Link> Create(Models.LinkCreationArgs linkArgs)
         {
-            string segment = "/links";
+            string segment = "links";
             string json = JsonConvert.SerializeObject(linkArgs);
 
             var response = await client.PostAsync(segment,
@@ -212,7 +212,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Link> Update(string id, string _title, bool _favourite, string _destination, string _description = null)
         {
-            string segment = "/links/ " + id;
+            string segment = "links/ " + id;
             string json = JsonConvert.SerializeObject(new
             {
                 title = _title,
@@ -236,7 +236,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Link> Delete(string id)
         {
-            string segment = "/links/" + id;
+            string segment = "links/" + id;
             var response = await client.DeleteAsync(segment);
             response.EnsureSuccessStatusCode();
 
@@ -252,9 +252,9 @@ namespace Rebrandly
         /// <param name="limit">How many tags to load (max: 25)</param>
         /// <param name="last">The id of the last tag you fetched</param>
         /// <returns></returns>
-        public async Task<Models.Tag[]> ListTags(string id, OrderDir? orderDir, uint limit = 25, string last = null)
+        public async Task<Models.Tag[]> ListTags(string id, OrderDir? orderDir = null, uint limit = 25, string last = null)
         {
-            string segment = "/links/" + id + "/tags";
+            string segment = "links/" + id + "/tags";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -277,7 +277,7 @@ namespace Rebrandly
         /// <param name="id">Unique identifier of the Link resource</param>
         /// <param name="orderDir">Sorting direction to apply to your tags collection</param>
         /// <returns></returns>
-        public async Task<Models.Tag[]> ListAllTags(string id, OrderDir? orderDir)
+        public async Task<Models.Tag[]> ListAllTags(string id, OrderDir? orderDir = null)
         {
             Func<string, Task<Models.Tag[]>> getTask = ((string last) =>
             {
@@ -295,9 +295,9 @@ namespace Rebrandly
         /// <param name="limit">How many scripts to load (max: 25)</param>
         /// <param name="last">The id of the last script you fetched.</param>
         /// <returns></returns>
-        public async Task<Models.Script[]> ListScripts(string id, OrderDir? orderDir, uint limit = 25, string last = null)
+        public async Task<Models.Script[]> ListScripts(string id, OrderDir? orderDir = null, uint limit = 25, string last = null)
         {
-            string segment = "/links/" + id + "/scripts";
+            string segment = "links/" + id + "/scripts";
 
             segment = Template.AddQueryParams(segment, new Dictionary<string, object>()
             {
@@ -320,7 +320,7 @@ namespace Rebrandly
         /// <param name="id">Unique identifier of the Link resource</param>
         /// <param name="orderDir">Sorting direction to apply to your scripts collection</param>
         /// <returns></returns>
-        public async Task<Models.Script[]> ListAllScripts(string id, OrderDir? orderDir)
+        public async Task<Models.Script[]> ListAllScripts(string id, OrderDir? orderDir = null)
         {
             Func<string, Task<Models.Script[]>> getTask = ((string last) =>
             {
