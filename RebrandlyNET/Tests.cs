@@ -49,12 +49,15 @@ namespace Rebrandly
                 return;
             }
 
-            Console.WriteLine("Testing links.");
-            WorkspacesTest();
-            DomainsTest();
+            Console.WriteLine("Testing list and get functionality.");
+            //WorkspacesTest();
+            //DomainsTest();
             //LinksTest();
-            TagsTest();
-            ScriptsTest();
+            //TagsTest();
+            //ScriptsTest();
+
+            Console.WriteLine("Testing creating and updating links.");
+            CreateLinksTest();
         }
 
         static void WorkspacesTest()
@@ -184,6 +187,29 @@ namespace Rebrandly
                 var tag = client.Tags.Get(alltags[0].ID).Result;
                 Console.WriteLine(JsonConvert.SerializeObject(tag));
             }
+        }
+
+        static void CreateLinksTest()
+        {
+            string testURL = "https://www.google.com";
+            string testvanity = "google10310";
+
+            string alttestURL = "https://www.youtube.com";
+            string alttestvanity = "thegreatestyoutubevideo";
+
+            Console.WriteLine("Creating a test link using get.");
+            var link = client.Links.CreateGET(testURL, testvanity, "TestURL").Result;
+
+            Console.WriteLine("Updating test link.");
+            var updated = client.Links.Update(link.ID, "TestURLV2", false, alttestURL).Result;
+
+            Console.WriteLine("Deleting the updated link.");
+            client.Links.Delete(updated.ID).Wait();
+
+            Console.WriteLine("Creating and deleting a new link with POST");
+            link = client.Links.Create(alttestURL, alttestvanity).Result;
+            client.Links.Delete(link.ID).Wait();
+
         }
     }
 }

@@ -112,7 +112,7 @@ namespace Rebrandly.Models
         [JsonProperty("domain")]
         public LinkDomainArgs Domain { get; set; } = new LinkDomainArgs()
         {
-            FullName = "rebrandly.ly"
+            FullName = "rebrand.ly"
         };
 
         /// <summary>

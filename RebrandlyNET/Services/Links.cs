@@ -126,7 +126,7 @@ namespace Rebrandly
         /// Precedence will be given to domain[id] value.</param>
         /// <returns></returns>
         public async Task<Models.Link> CreateGET(string destination, string slashtag = null, string title = null, 
-            string domainid = null, string domainfullName = "rebrandly.ly")
+            string domainid = null, string domainfullName = "rebrand.ly")
         {
             string segment = "links/new";
 
@@ -159,7 +159,7 @@ namespace Rebrandly
         /// For the domain object, only the <paramref name="_domainname"/> OR the <paramref name="_domainid"/> are needed. Unless the user has a plan
         /// that offers custom domains, they will not be allowed to use any domain but rebrandly.ly. Make sure the domain is already active/verified and shared in this workspace.
         /// </remarks>
-        public async Task<Models.Link> Create(string _destination, string _slashtag = null, string _domainname = "rebrandly.ly", 
+        public async Task<Models.Link> Create(string _destination, string _slashtag = null, string _domainname = "rebrand.ly", 
             string _domainid = null, string _title = null, string _description = null)
         {
             string segment = "links";
@@ -212,7 +212,7 @@ namespace Rebrandly
         /// <returns></returns>
         public async Task<Models.Link> Update(string id, string _title, bool _favourite, string _destination, string _description = null)
         {
-            string segment = "links/ " + id;
+            string segment = "links/" + id;
             string json = JsonConvert.SerializeObject(new
             {
                 title = _title,
